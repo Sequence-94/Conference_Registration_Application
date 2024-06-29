@@ -1,3 +1,8 @@
+# UML DIagram
+
+![Screen Shot 2024-06-29 at 14 30](https://github.com/Sequence-94/Conference_Registration_Application/assets/53806574/233fb997-e9d9-43b5-bbd9-49cf0d0f6622)
+
+
 # Conference Registration Application
 
 This project is a Qt-based GUI application for managing conference registrations. It supports multiple types of registrations, including standard, student, and guest registrations, with corresponding fee calculations. The application ensures no duplicate registrations and provides various querying capabilities.
@@ -38,3 +43,9 @@ This project is a Qt-based GUI application for managing conference registrations
     ```
 
 ## License
+
+## Testing Person Class
+
+![Screen Shot 2024-06-29 at 17 31](https://github.com/Sequence-94/Conference_Registration_Application/assets/53806574/ae2bb91b-afaf-4096-9fbd-dedb68d6953f)
+
+
