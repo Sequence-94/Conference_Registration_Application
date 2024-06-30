@@ -1,7 +1,3 @@
-
-
-
-
 #include "person.h"
 
 Person::Person(QObject *parent)
@@ -32,5 +28,6 @@ QString Person::getEmail() const
 
 QString Person::toString() const
 {
-    return "Name: " + m_Name + " Email: " + m_Email + " Affiliation: " + m_Affiliation;
+
+    return "Name:" + m_Name + " Email:" + m_Email + " Affiliation:" + m_Affiliation;
 }

@@ -2,6 +2,7 @@
 #define PERSON_H
 
 #include <QObject>
+#include <QString>
 
 class Person : public QObject
 {
