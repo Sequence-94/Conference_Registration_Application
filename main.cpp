@@ -1,6 +1,7 @@
 #include <QCoreApplication>
 #include "person.h"
 #include "Registration.h"
+#include "studentregistration.h"
 
 #include <QDebug>
 #include <iostream>
@@ -11,12 +12,11 @@ int main(int argc, char *argv[])
 
     Person p("John Doe", "University", "john@example.com");
 
-    Registration r(&p);
+    StudentRegistration sr(&p,"Engineering");
 
-    qDebug() << "Attendee: " << r.getAttendee()->toString();
-    qDebug() << "Booking Date: " << r.getBookingDate().toString();
-    qDebug() << "Fee: R" << r.calculateFee();
-    qDebug() << "ToString: " << r.toString();
+    qDebug() << "Attendee: " << sr.getAttendee()->toString();
+    qDebug() << "Fee: R" << sr.calculateFee();
+    qDebug() << "ToString: " << sr.toString();
 
     return a.exec();
 }
