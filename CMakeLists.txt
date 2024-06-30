@@ -17,6 +17,8 @@ add_executable(Conference_Registration_Application
   person.h person.cpp
   registration.h registration.cpp
   studentregistration.h studentregistration.cpp
+  guestregistration.h guestregistration.cpp
+  registrationlist.h registrationlist.cpp
 
 )
 target_link_libraries(Conference_Registration_Application Qt${QT_VERSION_MAJOR}::Core)
