@@ -33,7 +33,7 @@ This project is a Qt-based GUI application for managing conference registrations
     - Ensure you have Qt and a C++ compiler installed.
     - Open the project in Qt Creator or build from the command line:
       ```sh
-      qmake
+      cmake
       make
       ```
 
