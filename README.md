@@ -65,3 +65,8 @@ This project is a Qt-based GUI application for managing conference registrations
 ## Testing RegistrationList Class
 
 ![Screen Shot 2024-06-30 at 16 15](https://github.com/Sequence-94/Conference_Registration_Application/assets/53806574/8481c275-ce0b-4a7d-b832-dd6b74b1d96b)
+
+## Testing ConferenceRegistrationApplication
+
+![Screen Shot 2024-07-01 at 13 45](https://github.com/Sequence-94/Conference_Registration_Application/assets/53806574/6f8a6316-aa2d-4879-b3b0-f9288bd561ed)
+
