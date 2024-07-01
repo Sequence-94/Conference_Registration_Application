@@ -16,12 +16,19 @@ private:
     QLineEdit* emailInput;
     QLineEdit* affiliationInput;
     QLineEdit* typeInput;
+    QLineEdit* checkNameInput;
+    QLineEdit* totalFeeTypeInput;
+    QLineEdit* totalRegistrationsAffiliationInput;
 public:
     explicit ConferenceRegistrationApp(QWidget* parent = nullptr);
 
 private slots:
     void addRegistration();
     void updateTable();
+    void checkIsRegistered();
+    void calculateTotalFee();
+    void calculateTotalRegistrations();
+
 };
 
 #endif // CONFERENCEREGISTRATIONAPP_H

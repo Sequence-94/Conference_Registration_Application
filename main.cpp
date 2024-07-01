@@ -1,4 +1,3 @@
-#include <QCoreApplication>
 #include <QApplication>
 #include "person.h"
 #include "Registration.h"
@@ -12,8 +11,6 @@
 
 int main(int argc, char *argv[])
 {
-    //QCoreApplication a(argc, argv);
-
     QApplication app(argc, argv);
 
 

@@ -13,34 +13,65 @@ ConferenceRegistrationApp::ConferenceRegistrationApp(QWidget *parent)
 {
     QVBoxLayout* layout = new QVBoxLayout(this);
 
-// Setup inputs
-nameInput = new QLineEdit(this);
-emailInput = new QLineEdit(this);
-affiliationInput = new QLineEdit(this);
-typeInput = new QLineEdit(this);
+    // Setup inputs
+    nameInput = new QLineEdit(this);
+    emailInput = new QLineEdit(this);
+    affiliationInput = new QLineEdit(this);
+    typeInput = new QLineEdit(this);
 
-// Setup table
-table = new QTableWidget(this);
-table->setColumnCount(4);
-table->setHorizontalHeaderLabels({"Name", "Email", "Affiliation", "Fee"});
+    // Setup inputs for other functions
+    checkNameInput = new QLineEdit(this);
+    totalFeeTypeInput = new QLineEdit(this);
+    totalRegistrationsAffiliationInput = new QLineEdit(this);
 
-// Setup buttons
-QPushButton* addButton = new QPushButton("Add Registration", this);
-connect(addButton, &QPushButton::clicked, this, &ConferenceRegistrationApp::addRegistration);
+    // Setup table
+    table = new QTableWidget(this);
+    table->setColumnCount(4);
+    table->setHorizontalHeaderLabels({"Name", "Email", "Affiliation", "Fee"});
 
-layout->addWidget(new QLabel("Name:"));
-layout->addWidget(nameInput);
-layout->addWidget(new QLabel("Email:"));
-layout->addWidget(emailInput);
-layout->addWidget(new QLabel("Affiliation:"));
-layout->addWidget(affiliationInput);
-layout->addWidget(new QLabel("Type (Standard/Student/Guest):"));
-layout->addWidget(typeInput);
-layout->addWidget(addButton);
-layout->addWidget(table);
+    // Setup buttons
+    QPushButton* addButton = new QPushButton("Add Registration", this);
+    connect(addButton, &QPushButton::clicked, this, &ConferenceRegistrationApp::addRegistration);
 
-setLayout(layout);
-updateTable();
+    QPushButton* checkButton = new QPushButton("Check Registration", this);
+    connect(checkButton, &QPushButton::clicked, this, &ConferenceRegistrationApp::checkIsRegistered);
+
+    QPushButton* totalFeeButton = new QPushButton("Calculate Total Fee", this);
+    connect(totalFeeButton, &QPushButton::clicked, this, &ConferenceRegistrationApp::calculateTotalFee);
+
+    QPushButton* totalRegistrationsButton = new QPushButton("Calculate Total Registrations", this);
+    connect(totalRegistrationsButton, &QPushButton::clicked, this, &ConferenceRegistrationApp::calculateTotalRegistrations);
+
+
+
+    layout->addWidget(new QLabel("Name:"));
+    layout->addWidget(nameInput);
+    layout->addWidget(new QLabel("Email:"));
+    layout->addWidget(emailInput);
+    layout->addWidget(new QLabel("Affiliation:"));
+    layout->addWidget(affiliationInput);
+    layout->addWidget(new QLabel("Type (Standard/Student/Guest):"));
+    layout->addWidget(typeInput);
+    layout->addWidget(addButton);
+
+    layout->addWidget(new QLabel("Check Name:"));
+    layout->addWidget(checkNameInput);
+    layout->addWidget(checkButton);
+
+    layout->addWidget(new QLabel("Total Fee Type (Standard/Student/Guest/All):"));
+    layout->addWidget(totalFeeTypeInput);
+    layout->addWidget(totalFeeButton);
+
+    layout->addWidget(new QLabel("Total Registrations Affiliation:"));
+    layout->addWidget(totalRegistrationsAffiliationInput);
+    layout->addWidget(totalRegistrationsButton);
+
+
+
+    layout->addWidget(table);
+
+    setLayout(layout);
+    updateTable();
 }
 
 void ConferenceRegistrationApp::addRegistration() {
@@ -82,4 +113,26 @@ void ConferenceRegistrationApp::updateTable() {
         table->setItem(row, 2, new QTableWidgetItem(reg->getAttendee()->getAffiliation()));
         table->setItem(row, 3, new QTableWidgetItem(QString::number(reg->calculateFee())));
     }
+}
+
+void ConferenceRegistrationApp::checkIsRegistered() {
+    QString name = checkNameInput->text();
+    bool registered = regList.isRegistered(name);
+    QMessageBox::information(this, "Check Registration",
+                             registered ? "The person is registered." : "The person is not registered.");
+    checkNameInput->clear();
+}
+
+void ConferenceRegistrationApp::calculateTotalFee() {
+    QString type = totalFeeTypeInput->text();
+    double total = regList.totalFee(type);
+    QMessageBox::information(this, "Total Fee", "The total fee is: " + QString::number(total));
+    totalFeeTypeInput->clear();
+}
+
+void ConferenceRegistrationApp::calculateTotalRegistrations() {
+    QString affiliation = totalRegistrationsAffiliationInput->text();
+    int total = regList.totalRegistrations(affiliation);
+    QMessageBox::information(this, "Total Registrations", "The total number of registrations is: " + QString::number(total));
+    totalRegistrationsAffiliationInput->clear();
 }

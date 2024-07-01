@@ -31,19 +31,30 @@ bool RegistrationList::isRegistered(QString n) const
 
     for(const auto& reg : m_AttendeeList){
         if(reg->getAttendee()->getName() == n){
+            qDebug()<<"names: -> "<<reg->getAttendee()->getName();
             return true;
         }
     }
-    return true;
+    return false;
 }
 
 double RegistrationList::totalFee(QString type) const
 {
     double total = 0.0;
+    if (type == "Standard"){
+        type = "Registration";
+    }
+    if (type == "Student"){
+        type = "StudentRegistration";
+    }
+    if (type == "Guest"){
+        type = "GuestRegistration";
+    }
 
     for(const auto& reg : m_AttendeeList){
         const QMetaObject* metaObj = reg->metaObject();
         QString regtype = metaObj->className();
+
         if(type == "All"){
             total += reg->calculateFee();
         }
