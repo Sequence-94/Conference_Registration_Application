@@ -1,4 +1,4 @@
-![Screen Shot 2024-07-01 at 16 50](https://github.com/Sequence-94/Conference_Registration_Application/assets/53806574/7eab02de-6435-4713-92eb-c0488a97d1a8)# UML DIagram
+# UML DIagram
 
 ![Screen Shot 2024-06-29 at 14 30](https://github.com/Sequence-94/Conference_Registration_Application/assets/53806574/233fb997-e9d9-43b5-bbd9-49cf0d0f6622)
 
