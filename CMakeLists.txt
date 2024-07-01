@@ -11,6 +11,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
+find_package(Qt6 REQUIRED COMPONENTS Widgets)
 
 add_executable(Conference_Registration_Application
   main.cpp
@@ -19,9 +20,12 @@ add_executable(Conference_Registration_Application
   studentregistration.h studentregistration.cpp
   guestregistration.h guestregistration.cpp
   registrationlist.h registrationlist.cpp
+  conferenceregistrationapp.h conferenceregistrationapp.cpp
 
 )
-target_link_libraries(Conference_Registration_Application Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(Conference_Registration_Application PRIVATE Qt6::Widgets Qt${QT_VERSION_MAJOR}::Core)
+
+
 
 include(GNUInstallDirs)
 install(TARGETS Conference_Registration_Application

@@ -15,6 +15,8 @@ public:
     bool isRegistered(QString n) const;
     double totalFee(QString type) const;
     int totalRegistrations(QString a) const;
+    const QList<Registration*>& getAttendeeList() const; // New feature to access attendee list
+
 };
 
 #endif // REGISTRATIONLIST_H
