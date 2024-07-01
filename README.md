@@ -1,4 +1,4 @@
-# UML DIagram
+![Screen Shot 2024-07-01 at 16 50](https://github.com/Sequence-94/Conference_Registration_Application/assets/53806574/7eab02de-6435-4713-92eb-c0488a97d1a8)# UML DIagram
 
 ![Screen Shot 2024-06-29 at 14 30](https://github.com/Sequence-94/Conference_Registration_Application/assets/53806574/233fb997-e9d9-43b5-bbd9-49cf0d0f6622)
 
@@ -70,3 +70,16 @@ This project is a Qt-based GUI application for managing conference registrations
 
 ![Screen Shot 2024-07-01 at 13 45](https://github.com/Sequence-94/Conference_Registration_Application/assets/53806574/6f8a6316-aa2d-4879-b3b0-f9288bd561ed)
 
+## Testing Check Registration
+
+![Screen Shot 2024-07-01 at 16 50](https://github.com/Sequence-94/Conference_Registration_Application/assets/53806574/46adb68d-82cf-4656-8dff-f6c6749083a2)
+
+
+## Testing Calculate Total Fee
+
+![Screen Shot 2024-07-01 at 16 51](https://github.com/Sequence-94/Conference_Registration_Application/assets/53806574/e572dd84-212a-4fd1-be71-a3daf693b341)
+
+
+## Testing Calculate Total Registrations
+
+![Screen Shot 2024-07-01 at 16 51 - 2](https://github.com/Sequence-94/Conference_Registration_Application/assets/53806574/dc09502d-40e2-4ca1-b789-c0c3da8b0587)
