@@ -9,6 +9,11 @@
 
 class ConferenceRegistrationApp : public QWidget {
     Q_OBJECT
+
+public:
+    explicit ConferenceRegistrationApp(QWidget* parent = nullptr);
+
+
 private:
     RegistrationList regList;
     QTableWidget* table;
@@ -19,8 +24,7 @@ private:
     QLineEdit* checkNameInput;
     QLineEdit* totalFeeTypeInput;
     QLineEdit* totalRegistrationsAffiliationInput;
-public:
-    explicit ConferenceRegistrationApp(QWidget* parent = nullptr);
+
 
 private slots:
     void addRegistration();
@@ -28,6 +32,7 @@ private slots:
     void checkIsRegistered();
     void calculateTotalFee();
     void calculateTotalRegistrations();
+    void saveRegistrationList();
 
 };
 

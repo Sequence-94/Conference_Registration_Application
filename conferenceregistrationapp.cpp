@@ -7,6 +7,8 @@
 #include "Registration.h"
 #include "StudentRegistration.h"
 #include "GuestRegistration.h"
+#include "registrationlistwriter.h"
+#include <QFileDialog>
 
 ConferenceRegistrationApp::ConferenceRegistrationApp(QWidget *parent)
     : QWidget{parent}
@@ -42,7 +44,8 @@ ConferenceRegistrationApp::ConferenceRegistrationApp(QWidget *parent)
     QPushButton* totalRegistrationsButton = new QPushButton("Calculate Total Registrations", this);
     connect(totalRegistrationsButton, &QPushButton::clicked, this, &ConferenceRegistrationApp::calculateTotalRegistrations);
 
-
+    QPushButton* saveButton = new QPushButton("Save Registration List", this);
+    connect(saveButton, &QPushButton::clicked, this, &ConferenceRegistrationApp::saveRegistrationList);
 
     layout->addWidget(new QLabel("Name:"));
     layout->addWidget(nameInput);
@@ -66,7 +69,7 @@ ConferenceRegistrationApp::ConferenceRegistrationApp(QWidget *parent)
     layout->addWidget(totalRegistrationsAffiliationInput);
     layout->addWidget(totalRegistrationsButton);
 
-
+    layout->addWidget(saveButton);
 
     layout->addWidget(table);
 
@@ -135,4 +138,16 @@ void ConferenceRegistrationApp::calculateTotalRegistrations() {
     int total = regList.totalRegistrations(affiliation);
     QMessageBox::information(this, "Total Registrations", "The total number of registrations is: " + QString::number(total));
     totalRegistrationsAffiliationInput->clear();
+}
+
+void ConferenceRegistrationApp::saveRegistrationList()
+{
+    QString filename = QFileDialog::getSaveFileName(this, "Save Registration List", "", "XML files (*.xml)");
+    if (!filename.isEmpty()) {
+        if (RegistrationListWriter::write(regList, filename)) {
+            QMessageBox::information(this, "Success", "Registration list saved successfully.");
+        } else {
+            QMessageBox::warning(this, "Error", "Failed to save the registration list.");
+        }
+    }
 }
