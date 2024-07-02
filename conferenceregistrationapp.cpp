@@ -8,6 +8,7 @@
 #include "StudentRegistration.h"
 #include "GuestRegistration.h"
 #include "registrationlistwriter.h"
+#include "registrationlistreader.h"
 #include <QFileDialog>
 
 ConferenceRegistrationApp::ConferenceRegistrationApp(QWidget *parent)
@@ -47,6 +48,10 @@ ConferenceRegistrationApp::ConferenceRegistrationApp(QWidget *parent)
     QPushButton* saveButton = new QPushButton("Save Registration List", this);
     connect(saveButton, &QPushButton::clicked, this, &ConferenceRegistrationApp::saveRegistrationList);
 
+    QPushButton* loadButton = new QPushButton("Load Registration List", this);
+    connect(loadButton, &QPushButton::clicked, this, &ConferenceRegistrationApp::loadRegistrationList);
+
+
     layout->addWidget(new QLabel("Name:"));
     layout->addWidget(nameInput);
     layout->addWidget(new QLabel("Email:"));
@@ -70,6 +75,7 @@ ConferenceRegistrationApp::ConferenceRegistrationApp(QWidget *parent)
     layout->addWidget(totalRegistrationsButton);
 
     layout->addWidget(saveButton);
+    layout->addWidget(loadButton);
 
     layout->addWidget(table);
 
@@ -148,6 +154,25 @@ void ConferenceRegistrationApp::saveRegistrationList()
             QMessageBox::information(this, "Success", "Registration list saved successfully.");
         } else {
             QMessageBox::warning(this, "Error", "Failed to save the registration list.");
+        }
+    }
+}
+
+void ConferenceRegistrationApp::loadRegistrationList()
+{
+    QString filename = QFileDialog::getOpenFileName(this, "Open Registration List", "", "XML files (*.xml)");
+    if (!filename.isEmpty()) {
+        QFile file(filename);
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            QMessageBox::warning(this, "Error", "Failed to open the registration list file.");
+            return;
+        }
+        RegistrationListReader reader;
+        if (reader.read(&file, regList)) {
+            updateTable();
+            QMessageBox::information(this, "Success", "Registration list loaded successfully.");
+        } else {
+            QMessageBox::warning(this, "Error", "Failed to load the registration list.");
         }
     }
 }

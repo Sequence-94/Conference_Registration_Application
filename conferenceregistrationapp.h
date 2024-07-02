@@ -33,6 +33,7 @@ private slots:
     void calculateTotalFee();
     void calculateTotalRegistrations();
     void saveRegistrationList();
+    void loadRegistrationList();
 
 };
 

@@ -3,7 +3,6 @@
 
 #include "Person.h"
 #include <QObject>
-
 #include <QString>
 #include <QDate>
 

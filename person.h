@@ -16,6 +16,12 @@ public:
     QString toString() const;
 
 
+    void setName(const QString &newName);
+
+    void setAffiliation(const QString &newAffiliation);
+
+    void setEmail(const QString &newEmail);
+
 private:
     QString m_Name;
     QString m_Affiliation;

@@ -31,3 +31,18 @@ QString Person::toString() const
 
     return "Name:" + m_Name + " Email:" + m_Email + " Affiliation:" + m_Affiliation;
 }
+
+void Person::setName(const QString &newName)
+{
+    m_Name = newName;
+}
+
+void Person::setAffiliation(const QString &newAffiliation)
+{
+    m_Affiliation = newAffiliation;
+}
+
+void Person::setEmail(const QString &newEmail)
+{
+    m_Email = newEmail;
+}

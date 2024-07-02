@@ -13,6 +13,7 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 find_package(Qt6 REQUIRED COMPONENTS Xml)
+find_package(Qt6 REQUIRED COMPONENTS Core)
 
 
 add_executable(Conference_Registration_Application
@@ -24,9 +25,10 @@ add_executable(Conference_Registration_Application
   registrationlist.h registrationlist.cpp
   conferenceregistrationapp.h conferenceregistrationapp.cpp
   registrationlistwriter.h registrationlistwriter.cpp
+  registrationlistreader.h registrationlistreader.cpp
 
 )
-target_link_libraries(Conference_Registration_Application PRIVATE Qt6::Widgets Qt6::Xml Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(Conference_Registration_Application PRIVATE Qt6::Widgets Qt6::Xml Qt6::Core Qt${QT_VERSION_MAJOR}::Core)
 
 
 
