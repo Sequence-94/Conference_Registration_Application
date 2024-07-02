@@ -83,3 +83,9 @@ This project is a Qt-based GUI application for managing conference registrations
 ## Testing Calculate Total Registrations
 
 ![Screen Shot 2024-07-01 at 16 51 - 2](https://github.com/Sequence-94/Conference_Registration_Application/assets/53806574/dc09502d-40e2-4ca1-b789-c0c3da8b0587)
+
+## Testing RegistrationListWriter Class
+
+![Screen Shot 2024-07-02 at 14 35](https://github.com/Sequence-94/Conference_Registration_Application/assets/53806574/6c31220d-4e24-4dbe-a3b6-76d0949c17eb)
+
+
