@@ -3,6 +3,8 @@
 #include "GuestRegistration.h"
 #include <QFile>
 #include <QDebug>
+#include "RegistrationFactory.h"
+
 
 
 bool RegistrationListReader::read(QIODevice *device, RegistrationList &regList)
@@ -30,59 +32,37 @@ void RegistrationListReader::readRegistration(QXmlStreamReader &xml, Registratio
 {
     QString type = xml.attributes().value("type").toString();
 
-
-    Registration *registration = nullptr;
-    Registration *sregistration = nullptr;
-    Registration *gregistration = nullptr;
+    // Registration *registration = nullptr;
+    // Registration *sregistration = nullptr;
+    // Registration *gregistration = nullptr;
     Person *person = new Person();
 
     while (xml.readNextStartElement()) {
         if (xml.name().toString() == "attendee") {
             readPerson(xml, *person);
-        }/* else if (xml.name().toString() == "bookingdate") {
-            xml.skipCurrentElement();
-        } else if (xml.name().toString() == "registrationfee") {
-            qDebug()<<"Element Fee Text: "<<xml.readElementText();
-            //xml.skipCurrentElement();
-        } else if (xml.name().toString() == "qualification") {
-            if (type == "StudentRegistration") {
-                registration = new StudentRegistration(person, xml.readElementText());
-            } else {
-                xml.skipCurrentElement();
-            }
-        } else if (xml.name().toString() == "category") {
-            if (type == "GuestRegistration") {
-                registration = new GuestRegistration(person, xml.readElementText());
-            } else {
-                xml.skipCurrentElement();
-            }
-        }*/ else {
+        } else {
             xml.skipCurrentElement();
         }
     }
 
-    if (type == "Registration" && registration == nullptr) {
-        registration = new Registration(person);
-        regList.addRegistration(registration);
-        //qDebug()<<"===========COUNT1==============";
-    }
+    Registration* registration = RegistrationFactory::instance().createRegistration(type, person);
+    regList.addRegistration(registration);
 
-    if(type == "StudentRegistration"){
-        sregistration = new StudentRegistration(person,"Qualification");
-        regList.addRegistration(sregistration);
-    }
+    // if (type == "Registration" && registration == nullptr) {
+    //     registration = new Registration(person);
+    //     regList.addRegistration(registration);
+    //     //qDebug()<<"===========COUNT1==============";
+    // }
 
-    if(type == "GuestRegistration"){
-        gregistration = new GuestRegistration(person,"Category");
-        regList.addRegistration(gregistration);
-    }
+    // if(type == "StudentRegistration"){
+    //     sregistration = new StudentRegistration(person,"Qualification");
+    //     regList.addRegistration(sregistration);
+    // }
 
-  /*  if (registration != nullptr) {
-        regList.addRegistration(registration);
-    } else {
-
-        delete person;
-    } */
+    // if(type == "GuestRegistration"){
+    //     gregistration = new GuestRegistration(person,"Category");
+    //     regList.addRegistration(gregistration);
+    // }
 }
 
 void RegistrationListReader::readPerson(QXmlStreamReader &xml, Person &person)

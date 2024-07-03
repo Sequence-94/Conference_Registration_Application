@@ -10,6 +10,8 @@
 #include "registrationlistwriter.h"
 #include "registrationlistreader.h"
 #include <QFileDialog>
+#include "RegistrationFactory.h"
+
 
 ConferenceRegistrationApp::ConferenceRegistrationApp(QWidget *parent)
     : QWidget{parent}
@@ -90,14 +92,16 @@ void ConferenceRegistrationApp::addRegistration() {
     QString type = typeInput->text();
 
     Person* person = new Person(name, affiliation, email);
-    Registration* reg = nullptr;
-    if (type.toLower() == "student") {
-        reg = new StudentRegistration(person, "Qualification");
-    } else if (type.toLower() == "guest") {
-        reg = new GuestRegistration(person, "Category");
-    } else {
-        reg = new Registration(person);
-    }
+    Registration* reg = RegistrationFactory::instance().createRegistration(type, person);
+
+
+    // if (type.toLower() == "student") {
+    //     reg = new StudentRegistration(person, "Qualification");
+    // } else if (type.toLower() == "guest") {
+    //     reg = new GuestRegistration(person, "Category");
+    // } else {
+    //     reg = new Registration(person);
+    // }
 
     if (regList.addRegistration(reg)) {
         updateTable();

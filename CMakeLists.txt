@@ -26,6 +26,7 @@ add_executable(Conference_Registration_Application
   conferenceregistrationapp.h conferenceregistrationapp.cpp
   registrationlistwriter.h registrationlistwriter.cpp
   registrationlistreader.h registrationlistreader.cpp
+  registrationfactory.h registrationfactory.cpp
 
 )
 target_link_libraries(Conference_Registration_Application PRIVATE Qt6::Widgets Qt6::Xml Qt6::Core Qt${QT_VERSION_MAJOR}::Core)
