@@ -5,38 +5,36 @@
 #include <QDebug>
 #include "RegistrationFactory.h"
 
-
-
+// Read registration list from an XML file
 bool RegistrationListReader::read(QIODevice *device, RegistrationList &regList)
 {
     QXmlStreamReader xml(device);
 
-    if(xml.readNextStartElement()){
-        if(xml.name().toString()=="registrationlist"){
-            while(xml.readNextStartElement()){
-                qDebug()<<"second root xml name is: "<<xml.name().toString();
-                if(xml.name().toString()=="registration"){
-                    readRegistration(xml,regList);
-                }else{
+    if (xml.readNextStartElement()){
+        if (xml.name().toString() == "registrationlist"){
+            // Loop through registration elements
+            while (xml.readNextStartElement()){
+                qDebug() << "Second root xml name is: " << xml.name().toString();
+                if (xml.name().toString() == "registration"){
+                    readRegistration(xml, regList);
+                } else {
                     xml.skipCurrentElement();
                 }
             }
-        }else{
-            xml.raiseError(QObject::tr("The File is not an XML RegistrationList"));
+        } else {
+            xml.raiseError(QObject::tr("The file is not an XML RegistrationList"));
         }
     }
     return !xml.error();
 }
 
+// Read a single registration from XML
 void RegistrationListReader::readRegistration(QXmlStreamReader &xml, RegistrationList &regList)
 {
     QString type = xml.attributes().value("type").toString();
-
-    // Registration *registration = nullptr;
-    // Registration *sregistration = nullptr;
-    // Registration *gregistration = nullptr;
     Person *person = new Person();
 
+    // Loop through person elements
     while (xml.readNextStartElement()) {
         if (xml.name().toString() == "attendee") {
             readPerson(xml, *person);
@@ -45,41 +43,21 @@ void RegistrationListReader::readRegistration(QXmlStreamReader &xml, Registratio
         }
     }
 
+    // Create registration object using factory pattern
     Registration* registration = RegistrationFactory::instance().createRegistration(type, person);
     regList.addRegistration(registration);
-
-    // if (type == "Registration" && registration == nullptr) {
-    //     registration = new Registration(person);
-    //     regList.addRegistration(registration);
-    //     //qDebug()<<"===========COUNT1==============";
-    // }
-
-    // if(type == "StudentRegistration"){
-    //     sregistration = new StudentRegistration(person,"Qualification");
-    //     regList.addRegistration(sregistration);
-    // }
-
-    // if(type == "GuestRegistration"){
-    //     gregistration = new GuestRegistration(person,"Category");
-    //     regList.addRegistration(gregistration);
-    // }
 }
 
+// Read a person element from XML
 void RegistrationListReader::readPerson(QXmlStreamReader &xml, Person &person)
 {
     while (xml.readNextStartElement()) {
         if (xml.name().toString() == "name") {
-
             person.setName(xml.readElementText());
-
         } else if (xml.name().toString() == "affiliation") {
-
             person.setAffiliation(xml.readElementText());
-
         } else if (xml.name().toString() == "email") {
-
             person.setEmail(xml.readElementText());
-
         } else {
             xml.skipCurrentElement();
         }

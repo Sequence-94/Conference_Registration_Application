@@ -1,13 +1,13 @@
 #include "registrationfactory.h"
 
-//RegistrationFactory::RegistrationFactory() {}
-
+// Singleton pattern for RegistrationFactory
 RegistrationFactory &RegistrationFactory::instance()
 {
     static RegistrationFactory instance;
     return instance;
 }
 
+// Create registration object based on type
 Registration *RegistrationFactory::createRegistration(const QString &type, Person *person, const QString &additionalInfo)
 {
     if (type == "StudentRegistration") {
@@ -18,4 +18,3 @@ Registration *RegistrationFactory::createRegistration(const QString &type, Perso
         return new Registration(person);
     }
 }
-
